@@ -50,7 +50,7 @@ const ERC20_ABI = JSON.parse(fs.readFileSync(path.join(__dirname, '/ERC20.json')
  * @returns 
  */
 
-const sleep = async (millis) => {
+ const sleep = async (millis) => {
     return new Promise(resolve => setTimeout(resolve, millis));
 };
 
@@ -127,10 +127,10 @@ switch (mode) {
                         let sle = randomIntInRange(sleep_from, sleep_to);
                         console.log(event.returnValues['1']+': задержка '+sle+'с..');
                         sleep(sle * 1000).then(() => {
-                            a.newAccount(privkey, adata.get(privkey));
+                            a.send(privkey, adata.get(privkey));
                         });
                     } else {
-                        a.newAccount(privkey, adata.get(privkey));
+                        a.send(privkey, adata.get(privkey));
                     }
                 }
             }).catch ((err) => {
@@ -146,12 +146,21 @@ switch (mode) {
         });
         break;
     default:
+        let i = 0;
         for (const [key, value] of adata) {
-            a.newAccount(key, value);
+            let prom = a.send(key, value);
+            ++i;
             if (isSleep) {
                 let sle = randomIntInRange(sleep_from, sleep_to);
-                console.log('Задержка '+sle+'с..');
-                await sleep(sle * 1000);   
+                prom.then(() => i < adata.size ? console.log('Задержка '+sle+'с..') : null);
+                if (i < adata.size) {
+                    await sleep(sle * 1000);
+                }  
+            }
+            if (i >= adata.size) {
+                await sleep(3000);
+                console.log('Завершение работы..')
+                exit();
             }
         }
         break;
