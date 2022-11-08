@@ -32,4 +32,5 @@ node main.js <адрес_токена> <кол-во> [erc20|eth]
 ```
 ## Автор
 Автор Jancrypto (telegram)
+
 Donate: 0x9D278054C3e73294215b63ceF34c385Abe52768B
