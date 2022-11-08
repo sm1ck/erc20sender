@@ -14,7 +14,7 @@
 ## Установка
 ```
 git clone https://github.com/sm1ck/erc20sender.git
-npm -i
+npm i
 ```
 ## Настройка
 В файле main.js ```const rpc = "wss://mainnet.infura.io/ws/v3/ВАШ_ID";``` замените значение в кавычках на ваш WebSocket (infura/alchemy) EVM блокчейна с возможностью создания subscription (не все провайдеры rpc дают возможность).
