@@ -35,6 +35,10 @@ export const send = async (acc, to_acc) => {
                 main.web3.eth.sendSignedTransaction(signedTx.rawTransaction).on('transactionHash', (hash) => {
                     console.log(address+' => '+hash);
                     resolve();
+                }).on('error', (error) => {
+                    console.log(address+' => ошибка:');
+                    console.dir(error);
+                    resolve();
                 });
             } else {
                 console.log(address+' => '+'недостаточный баланс кошелька');
@@ -66,6 +70,10 @@ export const send = async (acc, to_acc) => {
                 let signedTx = await main.web3.eth.accounts.signTransaction(tx, acc);
                 main.web3.eth.sendSignedTransaction(signedTx.rawTransaction).on('transactionHash', (hash) => {
                     console.log(address+' => '+hash);
+                    resolve();
+                }).on('error', (error) => {
+                    console.log(address+' => ошибка:');
+                    console.dir(error);
                     resolve();
                 });
             } else {
