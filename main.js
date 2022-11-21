@@ -16,6 +16,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { exit } from 'process';
 
+const version = '1.0.0';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -64,6 +65,11 @@ const ERC20_ABI = JSON.parse(fs.readFileSync(path.join(__dirname, '/ERC20.json')
 const randomIntInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+// Авторство
+
+console.log(`-=- erc20sender v${version} -=-`);
+console.log('License: ISC\nAuthor: @Jancrypto\nDonate: 0x9D278054C3e73294215b63ceF34c385Abe52768B');
 
 // Парсинг параметров
 
