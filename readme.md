@@ -14,6 +14,7 @@
 ## Установка
 ```
 git clone https://github.com/sm1ck/erc20sender.git
+cd erc20sender
 npm i
 ```
 ## Настройка
